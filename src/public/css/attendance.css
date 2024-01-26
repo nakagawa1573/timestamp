@@ -1,0 +1,52 @@
+.date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.date__btn{
+    background-color: #FFF;
+    border: 1px solid #000AFF;
+    color: #000AFF;
+    height: 30px;
+    width: 40px;
+    font-size: 25px;
+    line-height: 10px;
+    border-radius: 2px;
+}
+
+.date__txt{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 40px;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+}
+
+.content__table{
+    width: 90vw;
+}
+
+.table__row{
+    border-top: 1px solid #909090;
+}
+
+.table__header{
+    text-align: left;
+    width: 15%;
+}
+
+.table__header,
+.table__item{
+    padding: 20px 0 20px 40px;
+    font-size: 20px;
+}
+
+.pages{
+    text-align: center;
+    padding: 30px 0;
+}
