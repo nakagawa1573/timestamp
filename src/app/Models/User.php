@@ -43,13 +43,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function Rest()
-    {
-        return $this->hasMany(Rest::class);
-    }
-
-    public function Work()
+    public function work()
     {
         return $this->hasMany(Work::class);
+    }
+
+    public function rest()
+    {
+        return $this->hasMany(Rest::class);
     }
 }

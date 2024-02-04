@@ -10,9 +10,22 @@
     </h2>
 
     <section class="content">
-        <form class="content__form" action="">
-            <input type="text" class="form__input" placeholder="メールアドレス">
-            <input type="text" class="form__input" placeholder="パスワード">
+        <form class="content__form" action="/login" method="post">
+            @csrf
+            <input type="text" class="form__input" name="email" placeholder="メールアドレス" value="{{ old('email') }}">
+            <div class="form__error">
+                &emsp;
+                @error('email')
+                    {{ $message }}
+                @enderror
+            </div>
+            <input type="password" class="form__input" name="password" placeholder="パスワード">
+            <div class="form__error">
+                &emsp;
+                @error('password')
+                    {{ $message }}
+                @enderror
+            </div>
             <button class="form__btn">
                 ログイン
             </button>

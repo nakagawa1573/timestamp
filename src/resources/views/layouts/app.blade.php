@@ -17,7 +17,31 @@
         <h1 class="header__ttl">
             Atte
         </h1>
-        @yield('menu')
+
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                @if (Auth::check())
+                    <li class="header__nav-list__item">
+                        <a class="header__nav-list__item-link" href="/">
+                            ホーム
+                        </a>
+                    </li>
+                    <li class="header__nav-list__item">
+                        <a class="header__nav-list__item-link" href="/attendance">
+                            日付一覧
+                        </a>
+                    </li>
+                    <li class="header__nav-list__item">
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button class="header__nav-list__item-btn">
+                                ログアウト
+                            </button>
+                        </form>
+                    </li>
+                @endif
+            </ul>
+        </nav>
     </header>
 
     <main>

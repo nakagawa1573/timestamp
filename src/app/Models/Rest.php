@@ -11,6 +11,7 @@ class Rest extends Model
 
     protected $fillable = [
         'user_id',
+        'work_id',
         'rest_start',
         'rest_finish',
     ];
@@ -19,4 +20,10 @@ class Rest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function work()
+    {
+        return $this->belongsTo(Work::class);
+    }
+    
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\StampController;
 use App\Http\Controllers\TimeController;
 use Illuminate\Support\Facades\Route;
@@ -15,14 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [StampController::class, 'index']);
-
-Route::get('/register', function () {
-    return view('auth.register');
+Route::middleware('auth')->group(function(){
+    Route::get('/', [StampController::class, 'index']);
+    Route::get('/attendance', [TimeController::class, 'atte']);
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+// 勤務時間の処理
+Route::post('/', [StampController::class, 'startWork']);
+Route::patch('/', [StampController::class, 'finishWork']);
 
-Route::get('/attendance', [TimeController::class, 'atte']);
+//休憩時間の処理
+Route::post('/rest', [StampController::class, 'startRest']);
+Route::patch('/rest', [StampController::class, 'finishRest']);
+
+//日付別勤怠ページ
+Route::post('/attendance/next', [TimeController::class, 'next']);
+Route::post('/attendance/prev', [TimeController::class, 'prev']);

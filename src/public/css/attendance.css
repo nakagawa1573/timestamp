@@ -1,11 +1,11 @@
-.date{
+.date {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 30px 0;
 }
 
-.date__btn{
+.date__btn {
     background-color: #FFF;
     border: 1px solid #000AFF;
     color: #000AFF;
@@ -14,39 +14,91 @@
     font-size: 25px;
     line-height: 10px;
     border-radius: 2px;
+    cursor: pointer;
 }
 
-.date__txt{
+.date__txt {
     font-size: 20px;
     font-weight: bold;
     padding: 0 40px;
 }
 
-.content{
+.content {
     display: flex;
     justify-content: center;
 }
 
-.content__table{
+.content__table {
     width: 90vw;
 }
 
-.table__row{
+.table__row {
     border-top: 1px solid #909090;
 }
 
-.table__header{
+.table__header {
     text-align: left;
     width: 15%;
 }
 
 .table__header,
-.table__item{
+.table__item {
     padding: 20px 0 20px 40px;
     font-size: 20px;
 }
 
-.pages{
+.pages {
     text-align: center;
     padding: 30px 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination>li {
+    background: #FFF;
+    /* padding: 10px 20px; */
+    margin-right: 1px;
+    border: 1px solid #E4E8EB;
+    color: #2384CF;
+    height: 40px;
+    width: 45px;
+}
+
+.pagination>li>a {
+    text-decoration: none;
+    color: #2384CF;
+    display: block;
+    line-height: 40px;
+}
+
+.active,
+.disabled {
+    display: block;
+    height: 50px;
+    width: 50px;
+    line-height: 40px;
+}
+
+.pagination>li:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    width: 30px;
+}
+
+.pagination>li:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    width: 30px;
+}
+
+.active {
+    background-color: #2384CF !important;
+    color: #FFF !important;
+}
+
+.disabled {
+    cursor: default;
 }
