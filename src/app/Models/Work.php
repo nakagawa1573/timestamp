@@ -29,7 +29,7 @@ class Work extends Model
 
     public function scopeDateGroup($query)
     {
-        $query->selectRaw('DATE(created_at) as date')
+        $query->selectRaw('DATE(work_start) as date')
             ->groupBy('date')
             ->oldest('date');
     }
@@ -42,7 +42,7 @@ class Work extends Model
     public function scopeWorkSearch($query, $index, $dates)
     {
         if (array_key_exists($index, $dates)) {
-            $query->where('created_at', 'LIKE', $dates[$index] . '%');
+            $query->where('work_start', 'LIKE', $dates[$index] . '%');
         }
     }
 }
