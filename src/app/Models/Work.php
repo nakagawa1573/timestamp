@@ -14,7 +14,6 @@ class Work extends Model
         'user_id',
         'work_start',
         'work_finish',
-        'created_at'
     ];
 
     public function user()
@@ -27,13 +26,6 @@ class Work extends Model
         return $this->hasMany(Rest::class);
     }
 
-    public function scopeDateGroup($query)
-    {
-        $query->selectRaw('DATE(work_start) as date')
-            ->groupBy('date')
-            ->oldest('date');
-    }
-
     public function scopeTimeFormat($query, $users)
     {
         $query->selectRaw('TIME(work_start) as start_time');
@@ -42,7 +34,8 @@ class Work extends Model
     public function scopeWorkSearch($query, $index, $dates)
     {
         if (array_key_exists($index, $dates)) {
-            $query->where('work_start', 'LIKE', $dates[$index] . '%');
+            $query->where('work_finish', 'LIKE', $dates[$index] . '%')
+                ->orWhere('work_start', 'LIKE', $dates[$index] . '%');
         }
     }
 }

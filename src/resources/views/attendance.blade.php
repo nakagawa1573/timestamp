@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     <div class="date">
         <form action="/attendance/prev" method="post">
             @csrf
@@ -57,15 +56,15 @@
                         {{ isset($user->work_finish) ? Carbon\Carbon::parse($user->work_finish)->format('H:i:s') : '' }}
                     </td>
                     <td class="table__item">
-                        @foreach ($user->rest as $rest)
-                            <?php
+                        <?php
+                        $restTime = 0;
+                        foreach ($user->rest as $rest) {
                             $start = Carbon\Carbon::parse($rest->rest_start);
                             $finish = Carbon\Carbon::parse($rest->rest_finish);
                             $diff = $finish->diff($start);
-                            $restTime = 0;
                             $restTime += $diff->days * 86400 + $diff->h * 3600 + $diff->i * 60 + $diff->s;
-                            ?>
-                        @endforeach
+                        }
+                        ?>
                         {{ isset($restTime) ? Carbon\Carbon::parse($restTime)->format('H:i:s') : '' }}
                     </td>
                     <td class="table__item">
@@ -85,6 +84,6 @@
         </table>
     </section>
     <div class="pages">
-        {{$users->appends(request()->query())->links('vendor.pagination.pages')}}
+        {{ $users->appends(request()->query())->links('vendor.pagination.pages') }}
     </div>
 @endsection

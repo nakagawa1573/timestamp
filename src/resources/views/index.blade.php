@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    {{-- {{dd(session('startDate'))}} --}}
+    {{-- {{dd(session('latestWork'))}} --}}
     <p class="ttl">
         {{ $user->name }}さんお疲れ様です!
     </p>

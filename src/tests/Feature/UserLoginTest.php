@@ -19,10 +19,19 @@ class UserLoginTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->get('/login')
-            ->type($user->email, 'email')
-            ->type('secret', 'password')
-            ->press('ログイン')
-            ->seePageIs('/');
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ])
+        ->assertLocation('/');
+
+        $this->actingAs($user)
+        ->get('/attendance')
+        ->assertStatus(200);
+    }
+
+    public function testLoginError()
+    {
+        
     }
 }
