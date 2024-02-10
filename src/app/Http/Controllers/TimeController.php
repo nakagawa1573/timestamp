@@ -104,7 +104,9 @@ class TimeController extends Controller
             $date = isset($work->work_finish) ? Carbon::parse($work->work_finish)->format('Y-m-d') : Carbon::parse($work->work_start)->format('Y-m-d');
             $dates[] = $date;
         }
+        $dates = array_unique($dates);
+        sort($dates);
 
-        return $dates = array_unique($dates);
+        return $dates;
     }
 }

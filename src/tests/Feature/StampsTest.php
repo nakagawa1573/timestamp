@@ -348,7 +348,6 @@ class StampsTest extends TestCase
     public function testWorkFinishNewDay()
     {
         $user = $this->loginUser();
-        //勤務開始
         $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
 
         $nextDay = Carbon::now()->addDay();
@@ -373,14 +372,17 @@ class StampsTest extends TestCase
     {
         $user = $this->loginUser();
         $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+
+        $time = Carbon::parse('2024-01-01 23:00:00');
+        Carbon::setTestNow($time);
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
             'work_id' => session('work_id') ?? '',
             'rest_start' => now(),
         ]);
 
-        $nextDay = Carbon::now()->addDay();
-        Carbon::setTestNow($nextDay);
+        $time = Carbon::parse('2024-01-02 01:00:00');
+        Carbon::setTestNow($time);
         $response = $this->patch('/rest', [
             'user_id' => $user->id,
             'work_id' => session('work_id') ?? '',

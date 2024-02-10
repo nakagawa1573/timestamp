@@ -30,8 +30,4 @@ class UserLoginTest extends TestCase
         ->assertStatus(200);
     }
 
-    public function testLoginError()
-    {
-        
-    }
 }

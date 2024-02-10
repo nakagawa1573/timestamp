@@ -62,10 +62,6 @@ class StampController extends Controller
                             $rest->save();
                         }
                     }
-                    foreach ($rests as $rest) {
-                        $rest->rest_finish = now();
-                        $rest->save();
-                    }
                     session()->put('work_id', null);
                 });
                 return redirect('/')->with('message', '勤務を終了しました');
@@ -92,14 +88,15 @@ class StampController extends Controller
         $startDate = Rest::where('id', $request->id)->value('rest_start');
         $startDate = Carbon::parse($startDate)->format('Y-m-d');
         $now = Carbon::now();
+        $startOfDay = Carbon::now()->startOfDay();
         session()->put('startDate', $startDate);
         try {
-            DB::transaction(function () use ($request, $startDate, $now) {
+            DB::transaction(function () use ($request, $startDate, $now, $startOfDay) {
                 if ($startDate == $now->format('Y-m-d')) {
                     Rest::find($request->id)->update(['rest_finish' => $now]);
                 } else {
-                    Rest::find($request->id)->update(['rest_finish' => $now->subDay()->endOfDay()]);
-                    Rest::create(['user_id' => $request->user_id, 'work_id' => null, 'rest_start' => $now->startOfDay(), 'rest_finish' => $now]);
+                    Rest::find($request->id)->update(['rest_finish' => $startOfDay]);
+                    Rest::create(['user_id' => $request->user_id, 'work_id' => null, 'rest_start' => $startOfDay, 'rest_finish' => $now]);
                 }
                 session()->put('rest_id', null);
             });
