@@ -20,6 +20,7 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Features;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -43,6 +44,14 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::loginView(function () {
             return view('auth.login');
+        });
+
+        Fortify::confirmPasswordView(function () {
+            return view('auth.confirm');
+        });
+
+        Fortify::twoFactorChallengeView(function () {
+            return view('auth.tfa');
         });
 
         RateLimiter::for('login', function (Request $request) {
@@ -75,5 +84,6 @@ class FortifyServiceProvider extends ServiceProvider
                 return $user;
             }
         });
+
     }
 }

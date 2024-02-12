@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class TimeController extends Controller
 {
-    public function atte()
+    public function index()
     {
         $dates = $this->dateSearch();
 

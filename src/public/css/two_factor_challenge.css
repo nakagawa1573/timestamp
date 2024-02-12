@@ -1,0 +1,29 @@
+.content {
+    width: 73%;
+    margin: 0 auto;
+}
+
+.content__ttl {
+    font-size: 25px;
+    font-size: 25px;
+    padding-top: 20px;
+    margin-bottom: 40px;
+}
+
+.tfa__enable,
+.tfa__disable{
+    width: 100px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.tfa__enable{
+    background-color: #214be0;
+}
+
+.tfa__disable{
+    background-color: #DC3545;
+}

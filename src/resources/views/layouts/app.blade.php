@@ -32,6 +32,16 @@
                         </a>
                     </li>
                     <li class="header__nav-list__item">
+                        <a class="header__nav-list__item-link" href="/users">
+                            ユーザー一覧
+                        </a>
+                    </li>
+                    <li class="header__nav-list__item">
+                        <a class="header__nav-list__item-link" href="/mypage">
+                            マイページ
+                        </a>
+                    </li>
+                    <li class="header__nav-list__item">
                         <form action="/logout" method="post">
                             @csrf
                             <button class="header__nav-list__item-btn">
