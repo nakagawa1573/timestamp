@@ -11,7 +11,7 @@
     <p class="tfa__txt">
         コードか、リカバリーコードを入力してください
     </p>
-    <section class="tfa__content">
+    <section class="content">
         <form class="tfa__form" action="/two-factor-challenge" method="post">
             @csrf
             <input class="tfa__form--input" type="text" placeholder="コード" name="code">

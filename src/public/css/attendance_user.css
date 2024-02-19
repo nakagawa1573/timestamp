@@ -93,3 +93,45 @@
     text-align: center;
     width: 22%;
 }
+
+@media screen and (max-width:768px) {
+    .content__header--row>th {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+
+    .content__date>td {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+
+    .content__row>td {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .total__row>th{
+        font-size: 16px;
+    }
+
+    .total__row>td{
+        font-size: 16px;
+    }
+
+    .content__header--row>th {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+
+    .content__date>td {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+
+    .content__row>td {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+}

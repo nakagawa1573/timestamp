@@ -15,7 +15,8 @@ class UsersController extends Controller
         $users = User::with('work', 'rest')
             ->nameSearch($request->keyword)
             ->statusSearch($request->status)
-            ->get();
+            ->Paginate(10);
+            
         $status = $request->status;
         $keyword = $request->keyword;
 

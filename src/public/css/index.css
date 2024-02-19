@@ -5,7 +5,7 @@
     margin-bottom: 0;
 }
 
-.error{
+.error {
     text-align: center;
 }
 
@@ -25,13 +25,16 @@
 
 .content__form {
     width: 32%;
+    height: 10vw;
     margin-right: 2.5%;
+    min-width: 100px;
+    min-height: 43px;
 }
 
 .content__form-btn {
     background-color: #FFF;
     width: 100%;
-    height: 10vw;
+    height: 100%;
     border: none;
     border-radius: 6px;
     font-size: 25px;

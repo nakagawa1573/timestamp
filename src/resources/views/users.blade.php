@@ -67,7 +67,7 @@
                     <td>
                         <form class="user__btn" action="/attendance/user" method="get">
                             @csrf
-                            <input type="hidden" name="id" value="{{$user->id}}">
+                            <input type="hidden" name="id" value="{{ $user->id }}">
                             <button type="submit">
                                 勤怠表
                             </button>
@@ -77,4 +77,7 @@
             @endforeach
         </table>
     </section>
+    <div class="pages">
+        {{ $users->appends(request()->query())->links('vendor.pagination.pages') }}
+    </div>
 @endsection

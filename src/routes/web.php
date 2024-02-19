@@ -5,9 +5,11 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\StampController;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,12 +46,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/attendance/user-prev', [TimeController::class, 'prevForUser']);
 });
 
-Route::get('/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-
-Route::get('/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect('/');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+//メール確認用ルート
+Route::get('/verify', [VerifyEmailController::class, 'index'])->middleware('auth')->name('verification.notice');
+Route::get('/verify/{id}/{hash}', [VerifyEmailController::class, 'confirm'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('/email/verification-notification', [VerifyEmailController::class, 'send'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 

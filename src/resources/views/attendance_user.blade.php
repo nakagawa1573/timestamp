@@ -109,17 +109,17 @@ $date = Carbon\Carbon::parse($date)->format('Y-m');
                                 {{ isset($work->work_start) ? Carbon\Carbon::parse($work->work_start)->format('H:i:s') : '' }}
                             </td>
                             <td>
-                                {{ isset($work->work_finish) ? Carbon\Carbon::parse($work->work_finish)->format('H:i:s') : ''}}
+                                {{ isset($work->work_finish) ? Carbon\Carbon::parse($work->work_finish)->format('H:i:s') : '' }}
                             </td>
                             <td>
                                 @if (array_key_exists($work->id, $restTimeGroup))
-                                    {{$restTimeGroup[$work->id]}}
+                                    {{ $restTimeGroup[$work->id] }}
                                 @else
-                                00:00:00
+                                    00:00:00
                                 @endif
                             </td>
                             <td>
-                                {{ isset($workTimeGroup[$work->id]) && $workTimeGroup[$work->id] > 0 ? $workTimeGroup[$work->id] : ''}}
+                                {{ isset($workTimeGroup[$work->id]) && $workTimeGroup[$work->id] > 0 ? $workTimeGroup[$work->id] : '' }}
                             </td>
                         </tr>
                         <?php $flag = true; ?>

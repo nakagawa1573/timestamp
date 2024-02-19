@@ -59,7 +59,6 @@
 
 .pagination>li {
     background: #FFF;
-    /* padding: 10px 20px; */
     margin-right: 1px;
     border: 1px solid #E4E8EB;
     color: #2384CF;
@@ -101,4 +100,20 @@
 
 .disabled {
     cursor: default;
+}
+
+@media screen and (max-width:768px) {
+    .table__header,
+    .table__item {
+        padding: 20px 0 20px 10px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .table__header,
+    .table__item {
+        padding: 20px 0 20px 5px;
+        font-size: 12px;
+    }
 }

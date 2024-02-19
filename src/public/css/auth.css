@@ -1,5 +1,6 @@
 .ttl,
-.tfa__ttl {
+.tfa__ttl,
+.confirm__ttl {
     text-align: center;
     margin-top: 80px;
     margin-bottom: 40px;
@@ -34,7 +35,7 @@
     font-size: 14px;
 }
 
-.form__btn{
+.form__btn {
     margin-bottom: 30px;
 }
 
@@ -69,21 +70,22 @@
     font-weight: bold;
 }
 
-.tfa__ttl{
+.tfa__ttl {
     margin-bottom: 0;
 }
 
-.tfa__content{
+.tfa__content {
     width: 380px;
     margin: 0 auto;
 }
 
-.tfa__txt{
+.tfa__txt {
     width: 380px;
     margin: 8px auto;
+    text-align: center;
 }
 
-.tfa__form{
+.tfa__form {
     display: flex;
     flex-direction: column;
 }
@@ -92,14 +94,15 @@
     margin-bottom: 40px;
 }
 
-#btn_1{
+#btn_1 {
     margin-bottom: 80px;
 }
 
 
 
 @media screen and (max-width:480px) {
-    .content {
+    .content,
+    .tfa__txt {
         width: 80%;
     }
 
@@ -109,5 +112,13 @@
 
     .content__box--link {
         font-size: 13px;
+    }
+
+    .tfa__txt{
+        font-size: 12px;
+    }
+
+    .confirm__ttl{
+        font-size: 20px;
     }
 }

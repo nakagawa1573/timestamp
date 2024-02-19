@@ -48,7 +48,7 @@
                     <button class="tfa__disable">
                         無効化
                     </button>
-                    <div>
+                    <div class="tfa__group">
                         <div class="pb-5">
                             {!! str_replace('<svg', '<svg width="100%" height="100%"', auth()->user()->twoFactorQrCodeSvg()) !!}
                         </div>

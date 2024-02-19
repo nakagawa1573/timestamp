@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h2 class="ttl">
+    <h2 class="confirm__ttl">
         パスワードを入力してください
     </h2>
 
