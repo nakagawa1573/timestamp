@@ -15,17 +15,42 @@ td {
 
 .search__form {
     max-width: 800px;
-    width: 73%;
+    /* width: 100vw; */
     height: 40px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    position: relative;
+}
+
+.search__type--box {
+    width: 15%;
+    position: relative;
 }
 
 .search__type {
-    width: 20%;
+    width: 100%;
+    height: 100%;
     appearance: none;
     cursor: pointer;
+    text-align: center;
+    padding-right: 10px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.search__type--box::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 6px 0 6px;
+    border-color: #b3b2b1 transparent transparent transparent;
+    position: absolute;
+    top: 50%;
+    right: 13%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .search__type:invalid {
@@ -37,7 +62,7 @@ td {
 }
 
 .search__name {
-    width: 35%;
+    width: 50%;
     padding-left: 10px;
 }
 
@@ -45,42 +70,21 @@ td {
     color: #909090;
 }
 
-/* .search__date {
-    width: 25%;
-    position: relative;
-} */
-
-/* .search__date::before {
-    content: '最終勤務日:';
-    cursor: pointer;
-}
-
-.search__date::-webkit-calendar-picker-indicator {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    opacity: 0;
-} */
-
-/* .search__date {
-    color: #909090;
-} */
-
 .search__type,
-.search__name,
-.search__date {
+.search__name {
     border: 1px solid #909090;
-    border-radius: 3px;
-    padding-left: 10px;
+    border-right: none;
     background-color: transparent;
 }
 
 .search__btn {
     width: 10%;
-    background-color: #fff;
+    color: #fff;
+    background-color: #909090;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .table__users {

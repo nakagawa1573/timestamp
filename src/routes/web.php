@@ -6,6 +6,8 @@ use App\Http\Controllers\StampController;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,26 +20,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [StampController::class, 'index']);
     Route::get('/attendance', [TimeController::class, 'index']);
     Route::get('/mypage', [MyPageController::class, 'index']);
-    Route::get('/mypage/two_factor_setting', [MyPageController::class, 'tfa']);
+    Route::get('/users', [UsersController::class, 'index'])->name('users');
+    Route::get('/attendance/user', [TimeController::class, 'user'])->name('attendance.user');
+
+    // 勤務時間の処理
+    Route::post('/', [StampController::class, 'startWork']);
+    Route::patch('/', [StampController::class, 'finishWork']);
+
+    //休憩時間の処理
+    Route::post('/rest', [StampController::class, 'startRest']);
+    Route::patch('/rest', [StampController::class, 'finishRest']);
+
+    //日付別勤怠ページ
+    Route::post('/attendance/next', [TimeController::class, 'next']);
+    Route::post('/attendance/prev', [TimeController::class, 'prev']);
+
+    //個人勤怠表の処理
+    Route::post('/attendance/user-next', [TimeController::class, 'nextForUser']);
+    Route::post('/attendance/user-prev', [TimeController::class, 'prevForUser']);
 });
 
-// 勤務時間の処理
-Route::post('/', [StampController::class, 'startWork']);
-Route::patch('/', [StampController::class, 'finishWork']);
+Route::get('/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
-//休憩時間の処理
-Route::post('/rest', [StampController::class, 'startRest']);
-Route::patch('/rest', [StampController::class, 'finishRest']);
-
-//日付別勤怠ページ
-Route::post('/attendance/next', [TimeController::class, 'next']);
-Route::post('/attendance/prev', [TimeController::class, 'prev']);
-
-//ユーザー一覧ページ
-Route::get('/users', [UsersController::class, 'index']);
-
+Route::get('/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 

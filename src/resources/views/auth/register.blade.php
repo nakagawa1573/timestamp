@@ -46,10 +46,10 @@
         </form>
 
         <div class="content__box">
-            <p class="content__box--txt">
+            <p class="content__box-txt">
                 アカウントをお持ちの方はこちらから
             </p>
-            <a class="content__box--link" href="/login">
+            <a class="content__box-link" href="/login">
                 ログイン
             </a>
         </div>

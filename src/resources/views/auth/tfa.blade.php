@@ -9,7 +9,7 @@
         2要素認証
     </h2>
     <p class="tfa__txt">
-        コードをメールアドレスに送信しました
+        コードか、リカバリーコードを入力してください
     </p>
     <section class="tfa__content">
         <form class="tfa__form" action="/two-factor-challenge" method="post">

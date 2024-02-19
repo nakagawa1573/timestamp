@@ -63,7 +63,7 @@
     margin: 0;
 }
 
-.content__box--link {
+.content__box-link {
     text-decoration: none;
     color: #214be0;
     font-weight: bold;
@@ -88,9 +88,12 @@
     flex-direction: column;
 }
 
-.tfa__form-input,
+.tfa__form--input {
+    margin-bottom: 40px;
+}
+
 #btn_1{
-    margin-bottom: 30px;
+    margin-bottom: 80px;
 }
 
 

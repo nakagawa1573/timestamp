@@ -14,7 +14,6 @@
             </button>
         </form>
         <p class="date__txt">
-            {{-- {{dd($dates)}} --}}
             {{ $dates[session('index')] ?? '' }}
         </p>
         <form action="/attendance/next" method="post">

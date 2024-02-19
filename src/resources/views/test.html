@@ -1,0 +1,80 @@
+[2024-02-18 18:06:13] testing.INFO: <!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="http://localhost/css/sanitize.css">
+    <link rel="stylesheet" href="http://localhost/css/common.css">
+        <link rel="stylesheet" href="http://localhost/css/auth.css">
+    <title>Atte</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1 class="header__ttl">
+            Atte
+        </h1>
+
+        <nav class="header__nav">
+            <ul class="header__nav-list">
+                                    <li class="header__nav-list__item">
+                        <a class="header__nav-list__item-link" href="/">
+                            ホーム
+                        </a>
+                    </li>
+                    <li class="header__nav-list__item">
+                        <a class="header__nav-list__item-link" href="/attendance">
+                            日付一覧
+                        </a>
+                    </li>
+                    <li class="header__nav-list__item">
+                        <a class="header__nav-list__item-link" href="/users">
+                            ユーザー一覧
+                        </a>
+                    </li>
+                    <li class="header__nav-list__item">
+                        <a class="header__nav-list__item-link" href="/mypage">
+                            マイページ
+                        </a>
+                    </li>
+                    <li class="header__nav-list__item">
+                        <form action="/logout" method="post">
+                            <input type="hidden" name="_token" value="smTMs5QjR3yXqDwusIwS2OBVJozrCfUgMZt0TC66" autocomplete="off">                            <button class="header__nav-list__item-btn">
+                                ログアウト
+                            </button>
+                        </form>
+                    </li>
+                            </ul>
+        </nav>
+    </header>
+
+    <main>
+            <h2 class="ttl">
+        パスワードを入力してください
+    </h2>
+
+    <section class="content">
+        <form class="content__form" action="/user/confirm-password" method="post">
+            <input type="hidden" name="_token" value="smTMs5QjR3yXqDwusIwS2OBVJozrCfUgMZt0TC66" autocomplete="off">            <input type="password" class="form__input" name="password" placeholder="パスワード">
+            <div class="form__error">
+                &emsp;
+                            </div>
+            <button class="form__btn">
+                送信する
+            </button>
+        </form>
+    </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__txt">
+            Atte,inc.
+        </p>
+    </footer>
+</body>
+
+</html>
+  

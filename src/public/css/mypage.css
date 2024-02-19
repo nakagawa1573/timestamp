@@ -1,19 +1,32 @@
 .content {
     width: 73%;
+    max-width: 1000px;
     margin: 0 auto;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
 }
 
 .profile__name {
     font-size: 25px;
     font-size: 25px;
-    padding-top: 20px;
+    margin-top: 60px;
     margin-bottom: 0;
 }
 
+.profile__email{
+    margin-bottom: 0;
+}
 
-.btn {
-    display: flex;
-    justify-content: space-between;
+.btn__works {
+    margin-left: 20px;
+}
+
+.btn__works--btn {
+    margin-top: 100px;
 }
 
 .btn__works,
@@ -30,4 +43,58 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.tfa__form>div {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tfa__enable,
+.tfa__disable {
+    width: 10%;
+    max-width: 100px;
+    height: 4vw;
+    max-height: 50px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.tfa__enable {
+    background-color: #214be0;
+}
+
+.tfa__disable {
+    background-color: #DC3545;
+}
+
+.pb-5 {
+    margin-right: 20px;
+    width: 20%;
+    max-width: 192px;
+    max-height: 192px;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.tfa__list--group {
+    width: 65%;
+}
+
+.tfa__list--ttl {
+    padding-left: 40px;
+}
+
+.tfa__list--recovery {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.code {
+    margin-bottom: 20px;
+    width: 50%;
 }
