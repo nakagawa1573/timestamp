@@ -150,9 +150,20 @@ return [
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([
-            'confirm' => true,
+            // 'confirm' => true,
             'confirmPassword' => true,
             // 'window' => 0,
         ]),
+    ],
+
+    'two_factor' => [
+        'confirmPassword' => true,
+        'expiry' => 600,
+        'providers' =>[
+            'users' => [
+                'driver' => 'eloquent',
+                'model' => \App\Models\User::class,
+            ],
+        ],
     ],
 ];

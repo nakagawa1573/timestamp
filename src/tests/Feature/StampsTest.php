@@ -34,7 +34,7 @@ class StampsTest extends TestCase
     {
         $user = $this->loginUser();
         //勤務開始
-        $response = $this->post('/', ['user_id' => $user->id,]);
+        $response = $this->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $response->assertStatus(302)
             ->assertRedirect('/')
@@ -45,11 +45,12 @@ class StampsTest extends TestCase
     public function testWorkFinish()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
         //勤務終了
         $response = $this->patch('/', [
             'user_id' => $user->id,
             'id' =>   session('work_id') ?? '' ,
+            'status' => '勤務外'
         ]);
         $response->assertStatus(302)
             ->assertRedirect('/')
@@ -61,12 +62,13 @@ class StampsTest extends TestCase
     {
 
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
         //休憩開始
         $response =  $this->post('/rest', [
             'user_id' => $user->id,
             'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         $response->assertStatus(302)
             ->assertRedirect('/')
@@ -77,18 +79,20 @@ class StampsTest extends TestCase
     public function testRestFinish()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
             'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         //休憩終了
         $response = $this->patch('/rest', [
             'user_id' => $user->id,
             'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
 
         $response->assertStatus(302)
@@ -100,43 +104,49 @@ class StampsTest extends TestCase
     public function testRestAgain()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         $this->followingRedirects()->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' =>session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
 
         sleep(1);
 
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         $this->followingRedirects()->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
 
         sleep(1);
 
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         $response = $this->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
 
         $response->assertStatus(302)
@@ -148,22 +158,25 @@ class StampsTest extends TestCase
     public function testAllFinish()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         $this->followingRedirects()->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
 
         $response = $this->patch('/', [
             'user_id' => $user->id,
-            'id' =>   session('work_id') ?? '',
+            'id' =>   session('work_id') ?? '' ,
+            'status' => '勤務外'
         ]);
 
         $response->assertStatus(302)
@@ -175,9 +188,9 @@ class StampsTest extends TestCase
     public function testWorkStartError()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
-        $response = $this->post('/', ['user_id' => $user->id,]);
+        $response = $this->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
         $response->assertStatus(302)
             ->assertRedirect('/')
             ->assertSessionHas('message', '前回の勤務が終了していません');
@@ -187,12 +200,13 @@ class StampsTest extends TestCase
     public function testWorkStartRestFinishError()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $response = $this->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
 
         $response->assertStatus(302)
@@ -207,8 +221,9 @@ class StampsTest extends TestCase
 
         $response =  $this->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
 
         $response->assertStatus(302)
@@ -223,8 +238,9 @@ class StampsTest extends TestCase
 
         $response = $this->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
 
         $response->assertStatus(302)
@@ -251,18 +267,20 @@ class StampsTest extends TestCase
     public function testRestStartAgainError()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         sleep(1);
         $response =  $this->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         $response->assertStatus(302)
             ->assertRedirect('/')
@@ -273,14 +291,15 @@ class StampsTest extends TestCase
     public function testWorkStartAgainError()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         sleep(1);
-        $response = $this->post('/', ['user_id' => $user->id,]);
+        $response = $this->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
         $response->assertStatus(302)
             ->assertRedirect('/')
             ->assertSessionHas('message', '前回の勤務が終了していません');
@@ -290,11 +309,12 @@ class StampsTest extends TestCase
     public function testWorkFinishAgainError()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
 
         $response = $this->patch('/', [
@@ -311,7 +331,7 @@ class StampsTest extends TestCase
     public function testWorkFinishCatch()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         DB::shouldReceive('transaction')->andThrow(new \Exception());
         $response = $this->patch('/', [
@@ -327,17 +347,19 @@ class StampsTest extends TestCase
     public function testRestFinishCatch()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
         DB::shouldReceive('transaction')->andThrow(new \Exception('Test Exception'));
         $response = $this->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
 
         $response->assertRedirect('/')
@@ -348,7 +370,7 @@ class StampsTest extends TestCase
     public function testWorkFinishNewDay()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $nextDay = Carbon::now()->addDay();
         Carbon::setTestNow($nextDay);
@@ -356,6 +378,7 @@ class StampsTest extends TestCase
         $response = $this->patch('/', [
             'user_id' => $user->id,
             'id' =>  session('work_id') ?? '' ,
+            'status' => '勤務外'
         ]);
         $works = Work::where('user_id', $user->id)->get();
         foreach ($works as $work) {
@@ -371,22 +394,24 @@ class StampsTest extends TestCase
     public function testRestFinishNewDay()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $time = Carbon::parse('2024-01-01 23:00:00');
         Carbon::setTestNow($time);
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
 
         $time = Carbon::parse('2024-01-02 01:00:00');
         Carbon::setTestNow($time);
         $response = $this->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
         $rests = Rest::where('user_id', $user->id)->get();
         foreach ($rests as $rest) {
@@ -401,7 +426,7 @@ class StampsTest extends TestCase
     public function testWorkContinue()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $this->followingRedirects()->post('/logout', []);
         $this->followingRedirects()->post('/login', [
@@ -412,6 +437,7 @@ class StampsTest extends TestCase
         $response = $this->patch('/', [
             'user_id' => $user->id,
             'id' =>  session('work_id') ?? '' ,
+            'status' => '勤務外'
         ]);
 
         $response->assertStatus(302)
@@ -423,12 +449,13 @@ class StampsTest extends TestCase
     public function testRestContinue()
     {
         $user = $this->loginUser();
-        $this->followingRedirects()->post('/', ['user_id' => $user->id,]);
+        $this->followingRedirects()->post('/', ['user_id' => $user->id, 'status' => '勤務中']);
 
         $this->followingRedirects()->post('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' => session('work_id') ?? '' ,
             'rest_start' => now(),
+            'status' => '休憩中'
         ]);
 
         $this->followingRedirects()->post('/logout', []);
@@ -439,8 +466,9 @@ class StampsTest extends TestCase
 
         $response = $this->patch('/rest', [
             'user_id' => $user->id,
-            'work_id' => session('work_id') ?? '',
+            'work_id' =>  session('work_id') ?? '',
             'id' => session('rest_id') ?? '',
+            'status' => '勤務中'
         ]);
         $response->assertStatus(302)
             ->assertRedirect('/')

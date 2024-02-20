@@ -1,4 +1,6 @@
-.ttl {
+.ttl,
+.tfa__ttl,
+.confirm__ttl {
     text-align: center;
     margin-top: 80px;
     margin-bottom: 40px;
@@ -14,12 +16,14 @@
     flex-direction: column;
 }
 
-.form__input {
+.form__input,
+.tfa__form--input {
     background-color: transparent;
     border: 2px solid #909090;
 }
 
-.form__input::placeholder {
+.form__input::placeholder,
+.tfa__form--input::placeholder {
     font-weight: bold;
     color: #909090;
     font-size: 14px;
@@ -32,16 +36,22 @@
 }
 
 .form__btn {
+    margin-bottom: 30px;
+}
+
+.form__btn,
+.tfa__form--btn {
     background-color: #214be0;
     color: #fff;
     border: none;
     cursor: pointer;
     font-size: 16px;
-    margin-bottom: 30px;
 }
 
 .form__input,
-.form__btn {
+.form__btn,
+.tfa__form--input,
+.tfa__form--btn {
     padding: 15px 15px;
     border-radius: 3px;
 }
@@ -50,7 +60,7 @@
     text-align: center;
 }
 
-.content__box-txt {
+.content__box--txt {
     margin: 0;
 }
 
@@ -60,16 +70,55 @@
     font-weight: bold;
 }
 
+.tfa__ttl {
+    margin-bottom: 0;
+}
+
+.tfa__content {
+    width: 380px;
+    margin: 0 auto;
+}
+
+.tfa__txt {
+    width: 380px;
+    margin: 8px auto;
+    text-align: center;
+}
+
+.tfa__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.tfa__form--input {
+    margin-bottom: 40px;
+}
+
+#btn_1 {
+    margin-bottom: 80px;
+}
+
+
+
 @media screen and (max-width:480px) {
-    .content {
+    .content,
+    .tfa__txt {
         width: 80%;
     }
 
-    .content__box-txt {
+    .content__box--txt {
         font-size: 13px;
     }
 
-    .content__box-link {
+    .content__box--link {
         font-size: 13px;
+    }
+
+    .tfa__txt{
+        font-size: 12px;
+    }
+
+    .confirm__ttl{
+        font-size: 20px;
     }
 }

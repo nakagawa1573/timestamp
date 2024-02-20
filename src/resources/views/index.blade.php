@@ -23,6 +23,7 @@
             <form class="content__form" action="/" method="post">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="status" value="勤務中">
                 <button class="content__form-btn" type="submit">
                     <span>勤務開始</span>
                 </button>
@@ -32,6 +33,7 @@
                 @method('patch')
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name="id" value="{{ session('work_id') ?? '' }}">
+                <input type="hidden" name="status" value="勤務外">
                 <button class="content__form-btn" type="submit">
                     勤務終了
                 </button>
@@ -43,6 +45,7 @@
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name='work_id' value="{{ session('work_id') ?? '' }}">
                 <input type="hidden" name="rest_start" value="{{ now() }}">
+                <input type="hidden" name="status" value="休憩中">
                 <button class="content__form-btn">
                     休憩開始
                 </button>
@@ -53,6 +56,7 @@
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name='work_id' value="{{ session('work_id') ?? '' }}">
                 <input type="hidden" name="id" value="{{ session('rest_id') ?? '' }}">
+                <input type="hidden" name="status" value="勤務中">
                 <button class="content__form-btn">
                     <span>休憩終了</span>
                 </button>

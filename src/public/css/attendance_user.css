@@ -1,0 +1,137 @@
+.ttl {
+    text-align: center;
+    font-size: 25px;
+    padding-top: 20px;
+    margin-bottom: 0;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.date__btn {
+    background-color: #FFF;
+    border: 1px solid #000AFF;
+    color: #000AFF;
+    height: 30px;
+    width: 40px;
+    font-size: 25px;
+    line-height: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.date__txt {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 40px;
+}
+
+.total {
+    margin-bottom: 30px;
+}
+
+.total__table {
+    margin: 0 auto;
+}
+
+.total__row {
+    font-size: 20px;
+    text-align: center;
+}
+
+.total__row:first-child {
+    border-bottom: 1px solid #909090;
+}
+
+.total__row>th,
+.total__row>td {
+    padding: 10px 20px;
+}
+
+
+.content {
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100vw;
+    margin-bottom: 100px;
+}
+
+.content__header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: #F2F2F2;
+}
+
+.content__header--row>th {
+    padding: 10px 20px;
+}
+
+.content__header--date {
+    border-right: 1px solid #909090;
+    width: 12%;
+}
+
+.content__table {
+    border-top: 1px solid #909090;
+    width: 100%;
+}
+
+.content__date>td {
+    border-right: 1px solid #909090;
+    padding: 10px 20px;
+    width: 12%;
+    text-align: center;
+}
+
+.content__row>td {
+    padding: 10px 20px;
+    text-align: center;
+    width: 22%;
+}
+
+@media screen and (max-width:768px) {
+    .content__header--row>th {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+
+    .content__date>td {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+
+    .content__row>td {
+        font-size: 14px;
+        padding: 10px 5px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .total__row>th{
+        font-size: 16px;
+    }
+
+    .total__row>td{
+        font-size: 16px;
+    }
+
+    .content__header--row>th {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+
+    .content__date>td {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+
+    .content__row>td {
+        font-size: 12px;
+        padding: 10px 0;
+    }
+}
