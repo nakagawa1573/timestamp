@@ -8,7 +8,6 @@
     <p class="ttl">
         ユーザー一覧
     </p>
-    {{-- {{ dd(session('last_work')) }} --}}
     <section class="group__search">
         <form class="search__form" action="/users" method="get" novalidate>
             @csrf
