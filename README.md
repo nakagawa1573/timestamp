@@ -13,11 +13,8 @@ http://54.250.249.198/
 https://github.com/nakagawa1573/timestamp.git
 
 ## 機能一覧
-<style>
-    tr,th,td{
-        border:solid 1px black;
-    }
-</style>
+
+
 <table>
 <tr>
 <th>
