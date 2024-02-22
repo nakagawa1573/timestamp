@@ -10,9 +10,6 @@
 - 本番環境：http://54.250.249.198/
 - 開発環境：http://localhost/
 
-## 他のリポジトリ
-https://github.com/nakagawa1573/timestamp.git
-
 ## 機能一覧
 <table>
 <tr>
