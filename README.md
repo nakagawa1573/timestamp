@@ -9,9 +9,7 @@
 ## アプリケーションURL
 - 本番環境：http://54.250.249.198/
 - 開発環境：http://localhost/
-
-## 他のリポジトリ
-https://github.com/nakagawa1573/timestamp.git
+- phpMyAdmin：http://localhost:8080/
 
 ## 機能一覧
 <table>
